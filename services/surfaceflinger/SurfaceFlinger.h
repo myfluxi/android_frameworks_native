@@ -43,6 +43,10 @@
 
 #include "MessageQueue.h"
 
+#ifdef BOARD_USES_SAMSUNG_HDMI
+#include "SecHdmiClient.h"
+#endif
+
 namespace android {
 
 // ---------------------------------------------------------------------------
@@ -462,6 +466,9 @@ private:
                 int                         mDispHeight;
                 int                         mSetDispSize;
                 int                         mUseDithering;
+#if defined(BOARD_USES_SAMSUNG_HDMI) && defined(SAMSUNG_EXYNOS5250)
+    SecHdmiClient *                         mHdmiClient;
+#endif
 };
 
 // ---------------------------------------------------------------------------
