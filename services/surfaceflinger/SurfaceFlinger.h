@@ -222,6 +222,9 @@ public:
     GLuint getProtectedTexName() const { return mProtectedTexName; }
 
     int         setDisplayParameter(uint32_t cmd,uint32_t  value);
+    // 0: surface doesn't need dithering, 1: use if necessary, 2: use permanently
+    inline int  getUseDithering() const { return mUseDithering; }
+
 
     uint32_t    getDisplayParameter(uint32_t cmd);
     void        removeNotificationClient(pid_t pid);
@@ -458,6 +461,7 @@ private:
                 int                         mDispWidth;
                 int                         mDispHeight;
                 int                         mSetDispSize;
+                int                         mUseDithering;
 };
 
 // ---------------------------------------------------------------------------
