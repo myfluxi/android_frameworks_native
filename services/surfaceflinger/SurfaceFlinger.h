@@ -102,6 +102,11 @@ public:
     virtual ~GraphicBufferAlloc();
     virtual sp<GraphicBuffer> createGraphicBuffer(uint32_t w, uint32_t h,
         PixelFormat format, uint32_t usage, status_t* error);
+#ifdef QCOM_HARDWARE
+    virtual void setGraphicBufferSize(int size);
+private:
+    int mBufferSize;
+#endif
 };
 
 // ---------------------------------------------------------------------------
@@ -228,7 +233,6 @@ public:
 
     // 0: surface doesn't need dithering, 1: use if necessary, 2: use permanently
     inline int  getUseDithering() const { return mUseDithering; }
-
 
     class MessageDestroyGLTexture : public MessageBase {
         GLuint texture;

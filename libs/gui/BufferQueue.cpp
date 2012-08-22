@@ -273,6 +273,15 @@ uint32_t BufferQueue::getParameter(uint32_t cmd)
     return 0;
 }
 
+#ifdef QCOM_HARDWARE
+status_t BufferQueue::setBuffersSize(int size) {
+    ST_LOGV("setBuffersSize: size=%d", size);
+    Mutex::Autolock lock(mMutex);
+    mGraphicBufferAlloc->setGraphicBufferSize(size);
+    return NO_ERROR;
+}
+#endif
+
 int BufferQueue::query(int what, int* outValue)
 {
     ATRACE_CALL();
