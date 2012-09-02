@@ -51,6 +51,13 @@ LOCAL_SHARED_LIBRARIES := \
 	libui \
 	libgui
 
+ifeq ($(BOARD_USES_QCOM_HARDWARE), true)
+    LOCAL_C_INCLUDES += hardware/qcom/display/libgralloc
+    LOCAL_C_INCLUDES += hardware/qcom/display/libqdutils
+    LOCAL_SHARED_LIBRARIES += libqdutils
+    LOCAL_CFLAGS += -DQCOMHW
+endif
+
 # this is only needed for DDMS debugging
 ifneq ($(TARGET_BUILD_PDK), true)
 	LOCAL_SHARED_LIBRARIES += libdvm libandroid_runtime
